@@ -12,11 +12,22 @@ import { useToast } from '@/hooks'
 import { RefreshCw, Server, Settings, Activity, Code } from 'lucide-react'
 
 interface ConfigData {
-  app: any
-  api: any
-  features: any
-  analytics: any
-  featureFlags: any
+  app: {
+    name: string
+    version: string
+    environment: string
+    url: string
+  }
+  api: {
+    baseUrl: string
+    timeout: number
+  }
+  features: Record<string, boolean>
+  analytics: {
+    enabled: boolean
+    trackingId?: string
+  }
+  featureFlags: Record<string, boolean>
 }
 
 interface SystemInfo {
@@ -33,7 +44,7 @@ interface HealthData {
   environment: string
   version: string
   uptime: number
-  checks: any
+  checks: Record<string, string>
 }
 
 export function EnhancedConfigDisplay({ className }: { className?: string }) {
@@ -104,7 +115,37 @@ export function EnhancedConfigDisplay({ className }: { className?: string }) {
   }
 
   useEffect(() => {
-    fetchData()
+    const loadData = async () => {
+      setLoading(true)
+      try {
+        const [configRes, systemRes, healthRes] = await Promise.all([
+          fetch('/api/config'),
+          fetch('/api/system'),
+          fetch('/api/health'),
+        ])
+
+        if (configRes.ok) {
+          const configData = await configRes.json()
+          setConfig(configData)
+        }
+
+        if (systemRes.ok) {
+          const systemData = await systemRes.json()
+          setSystemInfo(systemData)
+        }
+
+        if (healthRes.ok) {
+          const healthResponse = await healthRes.json()
+          setHealthData(healthResponse)
+        }
+      } catch (err) {
+        console.error('Error fetching data:', err)
+      } finally {
+        setLoading(false)
+      }
+    }
+
+    loadData()
   }, [])
 
   return (

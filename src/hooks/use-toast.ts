@@ -13,7 +13,7 @@ export const useToast = () => {
       messages: {
         loading: string
         success: string | ((data: T) => string)
-        error: string | ((error: any) => string)
+        error: string | ((error: Error) => string)
       }
     ) => toast.promise(promise, messages),
   }

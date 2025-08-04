@@ -6,7 +6,7 @@ const logs: Array<{
   timestamp: string
   level: string
   message: string
-  metadata?: any
+  metadata?: Record<string, unknown>
 }> = []
 
 export async function GET(request: Request) {
