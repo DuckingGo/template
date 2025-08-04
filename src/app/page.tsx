@@ -15,7 +15,7 @@ export default function Home() {
             <ThemeToggle />
           </div>
           <h1 className="mb-4 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-5xl font-bold text-transparent">
-            🚀 Next.js Template
+            Next.js Template
           </h1>
           <p className="text-muted-foreground mx-auto max-w-2xl text-xl">
             Production-ready template dengan Shadcn/ui dan Radix primitives untuk pengembangan
