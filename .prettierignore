@@ -1,0 +1,21 @@
+# Prettier ignore patterns
+node_modules/
+.next/
+dist/
+build/
+coverage/
+.env*
+*.log
+*.tgz
+*.tar.gz
+public/
+playwright-report/
+test-results/
+
+# Config files that should maintain their original formatting
+*.config.js
+*.config.mjs
+*.config.ts
+package-lock.json
+pnpm-lock.yaml
+yarn.lock
