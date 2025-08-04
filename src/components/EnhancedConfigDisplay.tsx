@@ -161,6 +161,11 @@ export function EnhancedConfigDisplay({ className }: { className?: string }) {
               API Docs
             </Button>
           </Link>
+          <Link href="/swagger">
+            <Button variant="outline" size="sm">
+              Swagger UI
+            </Button>
+          </Link>
           <Button variant="outline" size="sm" onClick={fetchData} disabled={loading}>
             <RefreshCw className={`mr-2 h-4 w-4 ${loading ? 'animate-spin' : ''}`} />
             Refresh

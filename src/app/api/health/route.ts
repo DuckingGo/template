@@ -1,6 +1,28 @@
 import { NextResponse } from 'next/server'
 import { config } from '../../../../config'
 
+/**
+ * @swagger
+ * /api/health:
+ *   get:
+ *     tags:
+ *       - Health
+ *     summary: Health check endpoint
+ *     description: Returns the health status of the application including uptime, memory usage, and service checks
+ *     responses:
+ *       200:
+ *         description: Health check successful
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Health'
+ *       500:
+ *         description: Health check failed
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Error'
+ */
 export async function GET() {
   try {
     const healthData = {

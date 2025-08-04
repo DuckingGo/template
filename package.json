@@ -70,6 +70,8 @@
     "react-dom": "19.1.0",
     "react-hook-form": "^7.62.0",
     "sonner": "^2.0.7",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-react": "^5.27.1",
     "tailwind-merge": "^3.3.1",
     "vaul": "^1.1.2",
     "zod": "^3.22.4"
@@ -85,6 +87,8 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "@types/swagger-jsdoc": "^6.0.4",
+    "@types/swagger-ui-react": "^5.18.0",
     "@typescript-eslint/eslint-plugin": "^8.0.0",
     "@typescript-eslint/parser": "^8.0.0",
     "cross-env": "^7.0.3",

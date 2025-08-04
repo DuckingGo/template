@@ -1,6 +1,28 @@
 import { NextResponse } from 'next/server'
 import { config, isFeatureEnabled } from '../../../../config'
 
+/**
+ * @swagger
+ * /api/config:
+ *   get:
+ *     tags:
+ *       - Configuration
+ *     summary: Get application configuration
+ *     description: Returns the current application configuration including app settings, API config, features, and analytics
+ *     responses:
+ *       200:
+ *         description: Configuration data retrieved successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Config'
+ *       500:
+ *         description: Internal server error
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Error'
+ */
 export async function GET() {
   try {
     const configData = {

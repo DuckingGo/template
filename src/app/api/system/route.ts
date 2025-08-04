@@ -1,6 +1,28 @@
 import { NextResponse } from 'next/server'
 import os from 'os'
 
+/**
+ * @swagger
+ * /api/system:
+ *   get:
+ *     tags:
+ *       - System
+ *     summary: Get system information
+ *     description: Returns detailed system information including OS, hardware specs, and runtime details
+ *     responses:
+ *       200:
+ *         description: System information retrieved successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/SystemInfo'
+ *       500:
+ *         description: Failed to retrieve system information
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Error'
+ */
 export async function GET() {
   try {
     const systemInfo = {

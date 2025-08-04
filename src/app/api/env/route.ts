@@ -1,5 +1,42 @@
 import { NextResponse } from 'next/server'
 
+/**
+ * @swagger
+ * /api/env:
+ *   get:
+ *     tags:
+ *       - Environment
+ *     summary: Get public environment variables
+ *     description: Returns public environment variables (NEXT_PUBLIC_* only) for security
+ *     responses:
+ *       200:
+ *         description: Environment variables retrieved successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 public_variables:
+ *                   type: object
+ *                   additionalProperties:
+ *                     type: string
+ *                   description: Public environment variables
+ *                 node_env:
+ *                   type: string
+ *                   description: Node environment
+ *                 timestamp:
+ *                   type: string
+ *                   format: date-time
+ *                 count:
+ *                   type: number
+ *                   description: Number of public variables
+ *       500:
+ *         description: Failed to retrieve environment variables
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Error'
+ */
 export async function GET() {
   try {
     // Only expose public environment variables

@@ -9,6 +9,106 @@ const logs: Array<{
   metadata?: Record<string, unknown>
 }> = []
 
+/**
+ * @swagger
+ * /api/logs:
+ *   get:
+ *     tags:
+ *       - Logs
+ *     summary: Get application logs
+ *     description: Retrieves application logs with optional filtering by level and limit
+ *     parameters:
+ *       - in: query
+ *         name: level
+ *         schema:
+ *           type: string
+ *           enum: [debug, info, warn, error]
+ *         description: Filter logs by level
+ *       - in: query
+ *         name: limit
+ *         schema:
+ *           type: integer
+ *           default: 50
+ *           minimum: 1
+ *           maximum: 1000
+ *         description: Maximum number of logs to return
+ *     responses:
+ *       200:
+ *         description: Logs retrieved successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 logs:
+ *                   type: array
+ *                   items:
+ *                     $ref: '#/components/schemas/LogEntry'
+ *                 total:
+ *                   type: number
+ *                   description: Total number of logs matching filter
+ *                 filtered_by:
+ *                   type: object
+ *                   nullable: true
+ *                   description: Applied filters
+ *                 limit:
+ *                   type: number
+ *                   description: Applied limit
+ *                 timestamp:
+ *                   type: string
+ *                   format: date-time
+ *       500:
+ *         description: Failed to retrieve logs
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Error'
+ *   post:
+ *     tags:
+ *       - Logs
+ *     summary: Create log entry
+ *     description: Creates a new log entry in the application
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required:
+ *               - level
+ *               - message
+ *             properties:
+ *               level:
+ *                 type: string
+ *                 enum: [debug, info, warn, error]
+ *                 description: Log level
+ *               message:
+ *                 type: string
+ *                 description: Log message
+ *               metadata:
+ *                 type: object
+ *                 additionalProperties: true
+ *                 description: Additional metadata
+ *     responses:
+ *       200:
+ *         description: Log entry created successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/LogEntry'
+ *       400:
+ *         description: Invalid request body
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Error'
+ *       500:
+ *         description: Failed to create log entry
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Error'
+ */
 export async function GET(request: Request) {
   try {
     const { searchParams } = new URL(request.url)

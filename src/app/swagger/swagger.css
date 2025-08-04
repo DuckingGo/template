@@ -1,0 +1,117 @@
+/* Custom Swagger UI styles */
+.swagger-container {
+  --swagger-ui-border-color: hsl(var(--border));
+  --swagger-ui-bg-color: hsl(var(--background));
+  --swagger-ui-text-color: hsl(var(--foreground));
+  --swagger-ui-card-bg: hsl(var(--card));
+}
+
+.swagger-ui .topbar {
+  display: none;
+}
+
+.swagger-ui .info {
+  margin: 0;
+}
+
+.swagger-ui .scheme-container {
+  background: hsl(var(--card));
+  border: 1px solid hsl(var(--border));
+  border-radius: 8px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+.swagger-ui .opblock.opblock-get {
+  border-color: hsl(142, 76%, 36%);
+  background: hsl(142, 76%, 36%, 0.1);
+}
+
+.swagger-ui .opblock.opblock-post {
+  border-color: hsl(221, 83%, 53%);
+  background: hsl(221, 83%, 53%, 0.1);
+}
+
+.swagger-ui .opblock.opblock-put {
+  border-color: hsl(48, 96%, 53%);
+  background: hsl(48, 96%, 53%, 0.1);
+}
+
+.swagger-ui .opblock.opblock-delete {
+  border-color: hsl(0, 84%, 60%);
+  background: hsl(0, 84%, 60%, 0.1);
+}
+
+.swagger-ui .opblock-summary {
+  border-radius: 8px 8px 0 0;
+}
+
+.swagger-ui .opblock-body {
+  background: hsl(var(--card));
+}
+
+.swagger-ui .parameters-col_description input[type='text'] {
+  background: hsl(var(--input));
+  border: 1px solid hsl(var(--border));
+  color: hsl(var(--foreground));
+}
+
+.swagger-ui .btn {
+  border-radius: 6px;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+
+.swagger-ui .btn.execute {
+  background: hsl(var(--primary));
+  color: hsl(var(--primary-foreground));
+  border-color: hsl(var(--primary));
+}
+
+.swagger-ui .btn.execute:hover {
+  background: hsl(var(--primary) / 0.9);
+}
+
+.swagger-ui .responses-inner {
+  background: hsl(var(--card));
+  border: 1px solid hsl(var(--border));
+  border-radius: 8px;
+}
+
+.swagger-ui .highlight-code {
+  background: hsl(var(--muted));
+  border: 1px solid hsl(var(--border));
+  border-radius: 6px;
+}
+
+/* Dark mode adjustments */
+[data-theme='dark'] .swagger-ui .info .title {
+  color: hsl(var(--foreground));
+}
+
+[data-theme='dark'] .swagger-ui .info .description {
+  color: hsl(var(--muted-foreground));
+}
+
+[data-theme='dark'] .swagger-ui .opblock .opblock-summary-description {
+  color: hsl(var(--muted-foreground));
+}
+
+[data-theme='dark'] .swagger-ui .parameter__name {
+  color: hsl(var(--foreground));
+}
+
+[data-theme='dark'] .swagger-ui .parameter__type {
+  color: hsl(var(--muted-foreground));
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .swagger-ui .wrapper {
+    padding: 0 1rem;
+  }
+
+  .swagger-ui .opblock {
+    margin-bottom: 1rem;
+  }
+}

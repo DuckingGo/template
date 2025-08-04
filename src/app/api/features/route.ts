@@ -1,6 +1,95 @@
 import { NextResponse } from 'next/server'
 import { config, isFeatureEnabled } from '../../../../config'
 
+/**
+ * @swagger
+ * /api/features:
+ *   get:
+ *     tags:
+ *       - Features
+ *     summary: Get feature flags
+ *     description: Returns current feature flags status and evaluated flags
+ *     responses:
+ *       200:
+ *         description: Feature flags retrieved successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 features:
+ *                   type: object
+ *                   additionalProperties:
+ *                     type: boolean
+ *                   description: Raw feature flags
+ *                 evaluated_flags:
+ *                   type: object
+ *                   additionalProperties:
+ *                     type: boolean
+ *                   description: Evaluated feature flags
+ *                 environment:
+ *                   type: string
+ *                   description: Current environment
+ *                 timestamp:
+ *                   type: string
+ *                   format: date-time
+ *       500:
+ *         description: Failed to retrieve feature flags
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Error'
+ *   post:
+ *     tags:
+ *       - Features
+ *     summary: Update feature flag (Demo)
+ *     description: Updates a feature flag (demo mode - doesn't persist)
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required:
+ *               - feature
+ *               - enabled
+ *             properties:
+ *               feature:
+ *                 type: string
+ *                 description: Feature flag name
+ *               enabled:
+ *                 type: boolean
+ *                 description: Whether the feature should be enabled
+ *     responses:
+ *       200:
+ *         description: Feature flag updated successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 feature:
+ *                   type: string
+ *                 enabled:
+ *                   type: boolean
+ *                 updated_at:
+ *                   type: string
+ *                   format: date-time
+ *                 message:
+ *                   type: string
+ *       400:
+ *         description: Invalid request body
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Error'
+ *       500:
+ *         description: Failed to update feature flag
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Error'
+ */
 export async function GET() {
   try {
     const featureData = {
