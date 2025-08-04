@@ -17,6 +17,7 @@ A comprehensive, production-ready template for modern web applications with stro
 ## ✨ Features
 
 ### 🔒 Type Safety & Developer Experience
+
 - **TypeScript** with strict configuration
 - **Zod** for runtime environment validation
 - **ESLint** with comprehensive rules
@@ -24,24 +25,28 @@ A comprehensive, production-ready template for modern web applications with stro
 - **Husky** for git hooks
 
 ### 🏗️ Architecture & Scalability
+
 - **Modular configuration** for different environments
 - **Path aliases** for clean imports
 - **Feature flags** system
 - **Error boundaries** and proper error handling
 
 ### 🧪 Testing
+
 - **Jest** for unit testing
 - **React Testing Library** for component testing
 - **Playwright** for E2E testing
 - **Coverage reporting** with thresholds
 
 ### 🚀 Deployment & DevOps
+
 - **Docker** support with multi-stage builds
 - **GitHub Actions** CI/CD pipeline
 - **Environment-specific** configurations
 - **Security scanning** and vulnerability checks
 
 ### 🔧 Development Tools
+
 - **Hot reload** in development
 - **Bundle analyzer** for optimization
 - **Pre-commit hooks** for code quality
@@ -51,13 +56,14 @@ A comprehensive, production-ready template for modern web applications with stro
 
 ### Prerequisites
 
-- Node.js 18+ 
+- Node.js 18+
 - pnpm 8+ (recommended) or npm 8+
 - Git
 
 ### Installation
 
 1. **Clone and setup**
+
    ```bash
    git clone <repository-url>
    cd template
@@ -65,12 +71,14 @@ A comprehensive, production-ready template for modern web applications with stro
    ```
 
 2. **Environment configuration**
+
    ```bash
    cp .env.example .env.local
    # Edit .env.local with your configuration
    ```
 
 3. **Validate environment**
+
    ```bash
    pnpm run env:validate
    ```
@@ -84,17 +92,18 @@ A comprehensive, production-ready template for modern web applications with stro
 
 ### Environment Files
 
-| File | Purpose | When to use |
-|------|---------|-------------|
-| `.env.example` | Template with all variables | Reference for required variables |
-| `.env.local` | Local development | Development on your machine |
-| `.env.development` | Development environment | Shared development settings |
-| `.env.production` | Production environment | Production deployment |
-| `.env.test` | Testing environment | Running tests |
+| File               | Purpose                     | When to use                      |
+| ------------------ | --------------------------- | -------------------------------- |
+| `.env.example`     | Template with all variables | Reference for required variables |
+| `.env.local`       | Local development           | Development on your machine      |
+| `.env.development` | Development environment     | Shared development settings      |
+| `.env.production`  | Production environment      | Production deployment            |
+| `.env.test`        | Testing environment         | Running tests                    |
 
 ### Environment Variables
 
 #### Required Variables
+
 ```bash
 NODE_ENV=development
 NEXT_PUBLIC_APP_URL=http://localhost:3000
@@ -102,6 +111,7 @@ NEXT_PUBLIC_API_URL=http://localhost:3000/api
 ```
 
 #### Optional Variables
+
 ```bash
 # Database
 DATABASE_URL=postgresql://user:password@localhost:5432/database
@@ -136,19 +146,19 @@ pnpm run env:validate
 
 ### Available Scripts
 
-| Script | Description |
-|--------|-------------|
-| `pnpm run dev` | Start development server |
-| `pnpm run build` | Build for production |
-| `pnpm run start` | Start production server |
-| `pnpm run lint` | Run ESLint |
-| `pnpm run lint:fix` | Fix ESLint issues |
-| `pnpm run format` | Format code with Prettier |
-| `pnpm run type-check` | Run TypeScript type checking |
-| `pnmp run test` | Run unit tests |
-| `pnpm run test:watch` | Run tests in watch mode |
-| `pnpm run test:coverage` | Run tests with coverage |
-| `pnpm run test:e2e` | Run E2E tests |
+| Script                   | Description                  |
+| ------------------------ | ---------------------------- |
+| `pnpm run dev`           | Start development server     |
+| `pnpm run build`         | Build for production         |
+| `pnpm run start`         | Start production server      |
+| `pnpm run lint`          | Run ESLint                   |
+| `pnpm run lint:fix`      | Fix ESLint issues            |
+| `pnpm run format`        | Format code with Prettier    |
+| `pnpm run type-check`    | Run TypeScript type checking |
+| `pnmp run test`          | Run unit tests               |
+| `pnpm run test:watch`    | Run tests in watch mode      |
+| `pnpm run test:coverage` | Run tests with coverage      |
+| `pnpm run test:e2e`      | Run E2E tests                |
 
 ### Code Quality
 
@@ -170,6 +180,7 @@ import { User } from '@/types'
 ```
 
 Available aliases:
+
 - `@/*` → `./src/*`
 - `@/components/*` → `./src/components/*`
 - `@/lib/*` → `./src/lib/*`
@@ -224,20 +235,23 @@ src/
 ### Docker Deployment
 
 1. **Build Docker image**
+
    ```bash
    docker build -t template .
    ```
 
 2. **Run container**
+
    ```bash
    docker run -p 3000:3000 template
    ```
 
 3. **Using Docker Compose**
+
    ```bash
    # Production
    docker-compose up -d
-   
+
    # Development
    docker-compose -f docker-compose.dev.yml up -d
    ```
@@ -308,9 +322,9 @@ project-root/
 The project uses strict TypeScript settings:
 
 - **Strict mode** enabled
-- **No implicit any** 
+- **No implicit any**
 - **Unused locals/parameters** detection
-- **Exact optional properties** 
+- **Exact optional properties**
 - **No unchecked indexed access**
 
 ### ESLint Rules
@@ -335,22 +349,26 @@ Each environment has its own configuration:
 
 1. **Fork the repository**
 2. **Create a feature branch**
+
    ```bash
    git checkout -b feature/amazing-feature
    ```
 
 3. **Make your changes**
 4. **Run tests and linting**
+
    ```bash
    pnpm run test:ci
    ```
 
 5. **Commit your changes**
+
    ```bash
    git commit -m "feat: add amazing feature"
    ```
 
 6. **Push to the branch**
+
    ```bash
    git push origin feature/amazing-feature
    ```
@@ -383,4 +401,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ---
 
-Made with ❤️ for robust, scalable, and maintainable applications.
+Made by DuckingGo with ❤️ for robust, scalable, and maintainable applications.
