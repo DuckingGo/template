@@ -45,7 +45,7 @@ Please report security vulnerabilities through one of the following channels:
    - Fill out the advisory form
 
 2. **Email** (For sensitive issues)
-   - Send details to: [security@yourproject.com]
+   - Send details to: [kuliah.informatika01@gmail.com]
    - Use GPG key: [Your GPG Key ID] for encrypted communication
 
 3. **Private Issue**
