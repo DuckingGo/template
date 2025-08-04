@@ -1,0 +1,14 @@
+# Docker ignore patterns
+node_modules
+npm-debug.log
+.next
+.git
+.gitignore
+README.md
+Dockerfile
+.dockerignore
+coverage
+test-results
+playwright-report
+.env*
+!.env.example
