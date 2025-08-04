@@ -29,7 +29,12 @@
     "ui:add": "pnpm dlx shadcn@latest add",
     "ui:diff": "pnpm dlx shadcn@latest diff",
     "ui:init": "pnpm dlx shadcn@latest init",
-    "ui:update": "pnpm dlx shadcn@latest diff --update"
+    "ui:update": "pnpm dlx shadcn@latest diff --update",
+    "security:audit": "npm audit --audit-level moderate",
+    "security:audit:fix": "npm audit fix",
+    "security:deps": "npm outdated",
+    "security:check": "npm run security:audit && npm run type-check && npm run lint",
+    "security:update": "npm update && npm run security:audit:fix"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.1",
