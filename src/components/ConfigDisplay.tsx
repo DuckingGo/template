@@ -2,6 +2,10 @@
 
 import { config, isFeatureEnabled } from '../../config'
 import { logger } from '../lib/logger'
+import { Button } from '@/components/ui/button'
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
+import { Badge } from '@/components/ui/badge'
+import { ThemeToggle } from '@/components/theme-toggle'
 
 interface ConfigDisplayProps {
   className?: string
@@ -17,92 +21,136 @@ export function ConfigDisplay({ className }: ConfigDisplayProps) {
 
   return (
     <div className={className}>
-      <h2 className="mb-4 text-2xl font-bold">Environment Configuration</h2>
-
-      <div className="grid gap-4">
-        <div className="rounded-lg border p-4">
-          <h3 className="mb-2 text-lg font-semibold">Application</h3>
-          <ul className="space-y-1 text-sm">
-            <li>
-              <strong>Name:</strong> {config.app.name}
-            </li>
-            <li>
-              <strong>Version:</strong> {config.app.version}
-            </li>
-            <li>
-              <strong>Environment:</strong> {config.app.environment}
-            </li>
-            <li>
-              <strong>URL:</strong> {config.app.url}
-            </li>
-          </ul>
+      <div className="mb-6 flex items-center justify-between">
+        <div>
+          <h2 className="text-3xl font-bold tracking-tight">Environment Configuration</h2>
+          <p className="text-muted-foreground">View your application configuration and settings</p>
         </div>
+        <ThemeToggle />
+      </div>
 
-        <div className="rounded-lg border p-4">
-          <h3 className="mb-2 text-lg font-semibold">API</h3>
-          <ul className="space-y-1 text-sm">
-            <li>
-              <strong>Base URL:</strong> {config.api.baseUrl}
-            </li>
-            <li>
-              <strong>Timeout:</strong> {config.api.timeout}ms
-            </li>
-          </ul>
-        </div>
+      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <Card>
+          <CardHeader>
+            <CardTitle>Application</CardTitle>
+            <CardDescription>Core application settings</CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-2">
+            <div className="flex items-center justify-between">
+              <span className="text-sm font-medium">Name:</span>
+              <Badge variant="secondary">{config.app.name}</Badge>
+            </div>
+            <div className="flex items-center justify-between">
+              <span className="text-sm font-medium">Version:</span>
+              <Badge variant="outline">{config.app.version}</Badge>
+            </div>
+            <div className="flex items-center justify-between">
+              <span className="text-sm font-medium">Environment:</span>
+              <Badge variant={config.app.environment === 'production' ? 'default' : 'secondary'}>
+                {config.app.environment}
+              </Badge>
+            </div>
+            <div className="flex items-center justify-between">
+              <span className="text-sm font-medium">URL:</span>
+              <span className="text-muted-foreground text-sm">{config.app.url}</span>
+            </div>
+          </CardContent>
+        </Card>
 
-        <div className="rounded-lg border p-4">
-          <h3 className="mb-2 text-lg font-semibold">Features</h3>
-          <ul className="space-y-1 text-sm">
+        <Card>
+          <CardHeader>
+            <CardTitle>API Configuration</CardTitle>
+            <CardDescription>API endpoint and settings</CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-2">
+            <div className="flex items-center justify-between">
+              <span className="text-sm font-medium">Base URL:</span>
+              <span className="text-muted-foreground text-sm">{config.api.baseUrl}</span>
+            </div>
+            <div className="flex items-center justify-between">
+              <span className="text-sm font-medium">Timeout:</span>
+              <Badge variant="outline">{config.api.timeout}ms</Badge>
+            </div>
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader>
+            <CardTitle>Features</CardTitle>
+            <CardDescription>Application feature toggles</CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-2">
             {Object.entries(config.features).map(([key, value]) => (
-              <li key={key}>
-                <strong>{key}:</strong>
-                <span className={value ? 'text-green-600' : 'text-red-600'}>
-                  {' ' + String(value)}
-                </span>
-              </li>
+              <div key={key} className="flex items-center justify-between">
+                <span className="text-sm font-medium">{key}:</span>
+                <Badge variant={value ? 'default' : 'destructive'}>{String(value)}</Badge>
+              </div>
             ))}
-          </ul>
-        </div>
+          </CardContent>
+        </Card>
 
-        <div className="rounded-lg border p-4">
-          <h3 className="mb-2 text-lg font-semibold">Analytics</h3>
-          <ul className="space-y-1 text-sm">
-            <li>
-              <strong>Enabled:</strong> {String(config.analytics.enabled)}
-            </li>
+        <Card>
+          <CardHeader>
+            <CardTitle>Analytics</CardTitle>
+            <CardDescription>Analytics and tracking configuration</CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-2">
+            <div className="flex items-center justify-between">
+              <span className="text-sm font-medium">Enabled:</span>
+              <Badge variant={config.analytics.enabled ? 'default' : 'secondary'}>
+                {String(config.analytics.enabled)}
+              </Badge>
+            </div>
             {config.analytics.trackingId && (
-              <li>
-                <strong>Tracking ID:</strong> {config.analytics.trackingId}
-              </li>
+              <div className="flex items-center justify-between">
+                <span className="text-sm font-medium">Tracking ID:</span>
+                <span className="text-muted-foreground text-sm">{config.analytics.trackingId}</span>
+              </div>
             )}
-          </ul>
-        </div>
+          </CardContent>
+        </Card>
 
-        <div className="rounded-lg border p-4">
-          <h3 className="mb-2 text-lg font-semibold">Feature Flags</h3>
-          <ul className="space-y-1 text-sm">
-            <li>
-              <strong>New UI:</strong> {String(isFeatureEnabled('newUI'))}
-            </li>
-            <li>
-              <strong>Beta Features:</strong> {String(isFeatureEnabled('betaFeatures'))}
-            </li>
-            <li>
-              <strong>Debug Mode:</strong> {String(isFeatureEnabled('debugMode'))}
-            </li>
-          </ul>
-        </div>
+        <Card>
+          <CardHeader>
+            <CardTitle>Feature Flags</CardTitle>
+            <CardDescription>Dynamic feature enablement</CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-2">
+            <div className="flex items-center justify-between">
+              <span className="text-sm font-medium">New UI:</span>
+              <Badge variant={isFeatureEnabled('newUI') ? 'default' : 'secondary'}>
+                {String(isFeatureEnabled('newUI'))}
+              </Badge>
+            </div>
+            <div className="flex items-center justify-between">
+              <span className="text-sm font-medium">Beta Features:</span>
+              <Badge variant={isFeatureEnabled('betaFeatures') ? 'default' : 'secondary'}>
+                {String(isFeatureEnabled('betaFeatures'))}
+              </Badge>
+            </div>
+            <div className="flex items-center justify-between">
+              <span className="text-sm font-medium">Debug Mode:</span>
+              <Badge variant={isFeatureEnabled('debugMode') ? 'default' : 'secondary'}>
+                {String(isFeatureEnabled('debugMode'))}
+              </Badge>
+            </div>
+          </CardContent>
+        </Card>
 
-        <div className="rounded-lg border p-4">
-          <h3 className="mb-2 text-lg font-semibold">Development Tools</h3>
-          <button
-            onClick={handleTestLog}
-            className="rounded bg-blue-500 px-4 py-2 text-white transition-colors hover:bg-blue-600"
-          >
-            Test Logger
-          </button>
-          <p className="mt-2 text-xs text-gray-600">Check browser console for log output</p>
-        </div>
+        <Card>
+          <CardHeader>
+            <CardTitle>Development Tools</CardTitle>
+            <CardDescription>Testing and debugging utilities</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <Button onClick={handleTestLog} className="w-full">
+              Test Logger
+            </Button>
+            <p className="text-muted-foreground mt-2 text-xs">
+              Check browser console for log output
+            </p>
+          </CardContent>
+        </Card>
       </div>
     </div>
   )
